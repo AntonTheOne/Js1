@@ -1,0 +1,72 @@
+
+
+      <div class="admin-main-nav">
+        <input 
+          type="text" 
+          placeholder="Sök produkt..." 
+          class="admin-sok"
+          data-role="search-input"
+        />
+
+        <button 
+          class="admin-sok" 
+          data-role="search-btn"
+        >
+          Sök
+        </button>
+
+        <button 
+          class="admin-ny-produkt" 
+          onclick="location.href='/admin/products/new'"
+        >
+          Ny produkt
+        </button>
+      </div>
+
+      <div data-role="search-results"></div>
+
+      <div class="admin-table-container">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Namn</th>
+              <th>SKU</th>
+              <th>Publicerad</th>
+              <th>Pris</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+          </tbody>
+        </table>
+      </div>
+
+
+
+
+<script>
+const searchBtn = document.querySelector('[data-role="search-btn"]');
+const searchInput = document.querySelector('[data-role="search-input"]');
+const tbody = document.querySelector('.admin-table tbody');
+
+searchBtn.addEventListener('click', async () => {
+  const term = searchInput.value.trim();
+  if (!term) {
+    tbody.innerHTML = '';
+    return;
+  }
+
+  const response = await fetch(`/admin/products/search?query=${encodeURIComponent(term)}`);
+  const data = await response.json();
+
+  tbody.innerHTML = data.map(item => `
+    <tr>
+      <td>${item.name || '-'}</td>
+      <td>${item.sku || '-'}</td>
+      <td>${item.published || 'Ej publi'}</td>
+      <td>${item.price || '-'}</td>
+    </tr>
+  `).join('');
+});
+</script>
+
