@@ -70,4 +70,13 @@ router.get('/products/:id', (req, res) => {
   });
 });
 
+
+// DELETE produkt
+router.delete('/products/:id', (req, res) => {
+  const { id } = req.params;
+  const stmt = db.prepare('DELETE FROM products WHERE id = ?');
+  stmt.run(id);
+  res.sendStatus(200); // OK
+});
+
 module.exports = router;
