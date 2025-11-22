@@ -1,8 +1,182 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* Nollställ margin/padding för hela sidan */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-a {
-  color: #00B7FF;
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Body tar hela skärmen */
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+}
+
+
+.admin-header {
+  width: 100%;
+  background-color: #555;
+  color: white;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.admin-container {
+  display: flex;
+  flex: 1; 
+}
+
+
+.admin-sider {
+  width: 10%;           
+  min-width: 150px;
+  background-color: lightgray;
+  border: 1px solid black; 
+  height: 100%;        
+  padding: 20px; 
+}
+
+
+.admin-main-content {
+  flex: 1;           
+  border: 1px solid #ddd;
+  height: 100%;
+  padding: 20px;    
+}
+
+.admin-main-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;           /* mellanrum mellan input och knappar */
+  margin-bottom: 20px; /* avstånd under */
+  padding: 0;
+}
+
+/* Flytta sista elementet längst till höger */
+.admin-main-nav > :last-child {
+  margin-left: auto; /* skjuter det till höger */
+}
+
+/* Inputfält */
+.admin-main-nav .admin-sok {
+  padding: 8px 12px;      /* större inputfält */
+  border-radius: 5px;     /* rundade hörn */
+  flex-shrink: 0;
+  font-size: 1rem;        /* lite större text */
+}
+
+/* Knappar */
+.admin-main-nav button {
+  padding: 8px 16px;      /* större knappar */
+  cursor: pointer;
+  flex-shrink: 0;
+  font-size: 1rem;        /* lite större text */
+}
+
+.admin-table-container {
+  overflow-x: auto;  /* gör tabellen scrollbar på små skärmar */
+  margin-top: 20px;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: sans-serif;
+}
+
+.admin-table th,
+.admin-table td {
+  border: 1px solid #ccc; /* enkel border */
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.admin-table th {
+  font-weight: bold;
+  background-color: #f5f5f5; /* lite ljus bakgrund på header */
+}
+
+.admin-table tr:nth-child(even) {
+  background-color: #fafafa; /* lätt randning på rader */
+}
+
+form#new-product-form {
+  max-width: 800px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-family: inherit; /* behåller typsnitt */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: normal;
+}
+
+/* Stora fält (Namn, Beskrivning, Bild) */
+#name,
+#description,
+#image {
+  width: 60%;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Beskrivning textarea får högre höjd */
+#description {
+  min-height: 80px;
+}
+
+/* Mindre fält (Pris och SKU) */
+#price,
+#sku {
+  width: 20%;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Checkbox med label bredvid */
+.form-group label[for="published"] {
+  display: flex;
+  align-items: center;
+}
+
+.form-group input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+/* Submit-knappen */
+form#new-product-form button[type="submit"] {
+  width: 150px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  background-color: white;
+  color: inherit;
+  border: 2px solid #333;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+form#new-product-form button[type="submit"]:hover {
+  background-color: #f9f9f9;
+  border-color: #000;
 }
