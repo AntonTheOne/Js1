@@ -180,3 +180,49 @@ form#new-product-form button[type="submit"]:hover {
   background-color: #f9f9f9;
   border-color: #000;
 }
+
+    .product-detail {
+      max-width: 800px;
+      margin: 2rem auto;
+      font-family: sans-serif;
+    }
+
+    /* Flex-container för h2 + knapp */
+    .product-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .product-header h2 {
+      margin: 0;
+    }
+
+    .product-header button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .field-group {
+      margin-bottom: 1rem;
+    }
+
+    .field-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+
+    .field-group span {
+      display: block;
+      padding: 0;
+      margin: 0;
+    }
+
+    .product-image img {
+      max-width: 300px;
+      display: block;
+      margin-bottom: 1rem;
+    }

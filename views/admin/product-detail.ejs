@@ -1,1 +1,73 @@
-hej
+
+  <div class="product-detail">
+    <!-- Produktnamn som rubrik -->
+<div class="product-header">
+  <h2><%= product.name %></h2>
+  <button id="delete-btn" style="background-color: white; border: 1px solid #ccc; padding: 0.5rem 1rem; cursor:pointer;">
+    Ta bort
+  </button>
+</div>
+
+    <!-- Namn som label + text -->
+    <div class="field-group">
+      <label>Namn</label>
+      <span><%= product.name %></span>
+    </div>
+
+    <!-- Beskrivning -->
+    <div class="field-group">
+      <label>Beskrivning</label>
+      <span><%= product.description %></span>
+    </div>
+
+    <!-- Bild -->
+    <div class="field-group product-image">
+      <label>Bild</label>
+      <img src="<%= product.image %>" alt="<%= product.name %>">
+    </div>
+
+    <!-- Pris -->
+    <div class="field-group">
+      <label>Pris</label>
+      <span><%= product.price %> kr</span>
+    </div>
+
+    <!-- Publiceringsdatum -->
+    <div class="field-group">
+      <label>Publiceringsdatum</label>
+      <span><%= product.published ? new Date(product.published).toLocaleDateString() : 'Ej publicerad' %></span>
+    </div>
+
+    <!-- Slug -->
+    <div class="field-group">
+      <label>Slug</label>
+      <span><%= product.slug %></span>
+    </div>
+
+  </div>
+
+  <script>
+  const deleteBtn = document.getElementById('delete-btn');
+
+  deleteBtn.addEventListener('click', async () => {
+    const confirmed = confirm("Är du säker på att du vill radera?");
+    if (!confirmed) return; // Användaren avbröt
+
+    try {
+      // Skicka DELETE-förfrågan till backend
+      const response = await fetch(`/admin/products/<%= product.id %>`, {
+        method: 'DELETE'
+      });
+
+      if (response.ok) {
+        // Omdirigera till startsidan
+        window.location.href = '/admin/products';
+      } else {
+        alert("Fel vid borttagning av produkten");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Ett fel uppstod");
+    }
+  });
+</script>
